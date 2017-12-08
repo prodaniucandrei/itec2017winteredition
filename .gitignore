@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Tamarin/.vs/Tamarin/v14
+/Tamarin/packages
+/Tamarin/Tamarin/Tamarin/bin/Debug
+/Tamarin/Tamarin/Tamarin/obj/Debug
+/Tamarin/Tamarin/Tamarin.Droid/bin/Debug
+/Tamarin/Tamarin/Tamarin.Droid/obj
+/Tamarin/Tamarin/Tamarin.iOS/bin/iPhone/Debug
+/Tamarin/Tamarin/Tamarin.iOS/obj/iPhone/Debug
