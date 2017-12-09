@@ -16,7 +16,7 @@
         <Label Text="colegi"></Label>
     </StackLayout>
     <StackLayout>
-        <!--<SearchBar x:Name="search" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference search}}" Placeholder="Cauta colegi dupa nume"></SearchBar>-->
+        <SearchBar x:Name="search" Text="{Binding SearchText}" SearchCommand="{Binding SearchCommand}" Placeholder="Cauta colegi dupa nume"></SearchBar>
         <ListView ItemsSource="{Binding Colegi}" 
                   SelectedItem="{Binding Index}" 
                   HasUnevenRows="true"
