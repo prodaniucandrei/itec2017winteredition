@@ -22,7 +22,7 @@ namespace Tamarin.ViewModels
             set { SetProperty(ref _username, value); }
         }
 
-        public HomeViewModel(INavigationService navigationService): base(navigationService)
+        public HomeViewModel(INavigationService navigationService) : base(navigationService)
         {
             MenuItems = new ObservableCollection<HomePageMenuItem>(new[]
             {
@@ -32,22 +32,26 @@ namespace Tamarin.ViewModels
             });
             Username = App.Current.Properties["email"] as string;
             UserImage = ImageSource.FromFile("user.png");
-            NavigateCommand = new DelegateCommand<string>(OnNavigateCommandExecuted);
-            LogoutCommand = new DelegateCommand<string>(OnLogoutCommandExecuted);
+            NavigateCommand = new DelegateCommand<HomePageMenuItem>(OnNavigateCommandExecuted);
+            NavigateDashboardCommand = new Command<string>(OnNavigateDashboard);
         }
 
-        public DelegateCommand<string> NavigateCommand { get; }
+        public DelegateCommand<HomePageMenuItem> NavigateCommand { get; }
+        public Command<string> NavigateDashboardCommand { get; protected set; }
 
-        private async void OnNavigateCommandExecuted(string path)
+        private async void OnNavigateDashboard(string path)
         {
-            if (path == "Login")
-                await _navigationService.NavigateAsync(path);
-            await _navigationService.NavigateAsync("/Home/Navigation/"+path);
+            await _navigationService.NavigateAsync("/Home/Navigation/" + path);
+        }
+        private async void OnNavigateCommandExecuted(HomePageMenuItem item)
+        {
+            if (item.Title == "Logout")
+                OnLogoutCommandExecuted();
+            else
+                await _navigationService.NavigateAsync("/Home/Navigation/" + item.Title);
         }
 
-        public DelegateCommand<string> LogoutCommand { get; }
-
-        private async void OnLogoutCommandExecuted(string path)
+        private async void OnLogoutCommandExecuted()
         {
             App.Current.Properties["id"] = null;
             App.Current.Properties["email"] = null;
@@ -55,7 +59,7 @@ namespace Tamarin.ViewModels
             App.Current.Properties["token"] = null;
             App.Current.Properties["isLoggedIn"] = "false";
 
-            await _navigationService.NavigateAsync("/Login");
+            await _navigationService.NavigateAsync("Login");
         }
     }
 }

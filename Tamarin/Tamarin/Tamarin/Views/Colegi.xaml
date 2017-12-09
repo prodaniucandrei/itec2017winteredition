@@ -1,11 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localConv="clr-namespace:Tamarin.Converters"
+             xmlns:localBeh="clr-namespace:Tamarin.Behaviors"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Tamarin.Views.Colegi">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <localConv:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout>
         <Label Text="colegi"></Label>
     </StackLayout>
-  
+    <StackLayout>
+        <ListView ItemsSource="{Binding Colegi}" SelectedItem="{Binding Index}" HasUnevenRows="True" >
+            <ListView.Behaviors>
+                <localBeh:ListViewSelectedItemBehavior Command="{Binding ItemClickedCommand}"
+                                                    Converter="{StaticResource SelectedItemConverter}" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,1,0,0" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center"  HeightRequest="32">
+                            <Label Text="{Binding Nume}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+
 </ContentPage>

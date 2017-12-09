@@ -1,14 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:localConv="clr-namespace:Tamarin.Converters"
+                  xmlns:localBeh="clr-namespace:Tamarin.Behaviors"
                   xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                   x:Class="Tamarin.Views.Home">
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+            <localConv:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </MasterDetailPage.Resources>
+
     <MasterDetailPage.Master>
         <NavigationPage Title="Required Foo" Icon="hamburger.png">
             <x:Arguments>
                 <ContentPage NavigationPage.HasNavigationBar="False">
                     <StackLayout>
-                        <!--<ListView SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
+                        <ListView SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
+                            <ListView.Behaviors>
+                                <localBeh:ListViewSelectedItemBehavior Command="{Binding NavigateCommand}"
+                                                    Converter="{StaticResource SelectedItemConverter}" />
+                            </ListView.Behaviors>
                             <ListView.Header>
                                 <Grid BackgroundColor="White" Padding="0,30,0,30">
                                     <Grid.RowDefinitions>
@@ -22,7 +34,7 @@
                                     <Label Grid.Row="2" Text="VIEW DASHBOARD" TextColor="{StaticResource Dark}" HorizontalTextAlignment="Center"
                                        FontSize="Micro">
                                         <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="Dashboard"></TapGestureRecognizer>
+                                            <TapGestureRecognizer Command="{Binding NavigateDashboardCommand}" CommandParameter="Dashboard"></TapGestureRecognizer>
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </Grid>
@@ -43,22 +55,10 @@
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-                        </ListView>-->
+                        </ListView>
 
                     </StackLayout>
-
-                    <!--<Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>-->
-                    <StackLayout Orientation="Vertical" Padding="0,40,0,0">
+                    <!--<StackLayout Orientation="Vertical" Padding="0,40,0,0">
                         <StackLayout Orientation="Vertical">
                             <Image Grid.Row="0" Source="user.png" HeightRequest="64" WidthRequest="64"></Image>
                             <Label Grid.Row="1" Text="{Binding Username}" TextColor="{StaticResource Dark}" FontAttributes="Bold"
@@ -70,36 +70,42 @@
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
-                        
-                        <StackLayout Orientation="Horizontal" Padding="10,20,0,0" HorizontalOptions="StartAndExpand">
-                            <Image Source="orar.png" HeightRequest="32" WidthRequest="32" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+
+                        <StackLayout Orientation="Horizontal" Padding="10,20,0,0" HorizontalOptions="FillAndExpand">
+                            --><!--<Image Source="orar.png" HeightRequest="32" WidthRequest="32" VerticalOptions="Center" HorizontalOptions="Center"></Image>
                             <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="Orar" 
                                                FontSize="Small">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="Orar"></TapGestureRecognizer>
                                 </Label.GestureRecognizers>
-                            </Label>
+                            </Label>--><!--
+                            <Button Image="orar.png" Text="Orar" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" 
+                                    Command="{Binding NavigateCommand}" CommandParameter="Orar"></Button>
                         </StackLayout>
 
-                        <StackLayout Orientation="Horizontal" Padding="10,20,0,0" HorizontalOptions="StartAndExpand">
-                            <Image Source="colegi.png" HeightRequest="32" WidthRequest="32" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+                        <StackLayout Orientation="Horizontal" Padding="10,20,0,0" HorizontalOptions="FillAndExpand">
+                            --><!--<Image Source="colegi.png" HeightRequest="32" WidthRequest="32" VerticalOptions="Center" HorizontalOptions="Center"></Image>
                             <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="Colegi" 
                                                FontSize="Small">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="Colegi"></TapGestureRecognizer>
                                 </Label.GestureRecognizers>
-                            </Label>
+                            </Label>--><!--
+                            <Button Image="colegi.png" Text="Colegi" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" 
+                                    Command="{Binding NavigateCommand}" CommandParameter="Colegi"></Button>
                         </StackLayout>
-                        <StackLayout Orientation="Horizontal" Padding="10,20,0,0" HorizontalOptions="StartAndExpand">
-                            <Image Source="logout.png" HeightRequest="32" WidthRequest="32" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+                        <StackLayout Orientation="Horizontal" Padding="10,20,0,0" HorizontalOptions="FillAndExpand">
+                            --><!--<Image Source="logout.png" HeightRequest="32" WidthRequest="32" VerticalOptions="Center" HorizontalOptions="Center"></Image>
                             <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="Logout" 
                                                FontSize="Small">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="Login"></TapGestureRecognizer>
                                 </Label.GestureRecognizers>
-                            </Label>
+                            </Label>--><!--
+                            <Button Image="logout.png" Text="Logout" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" 
+                                    Command="{Binding NavigateCommand}" CommandParameter="Login"></Button>
                         </StackLayout>
-                    </StackLayout>
+                    </StackLayout>-->
                     <!--</Grid>-->
                 </ContentPage>
             </x:Arguments>

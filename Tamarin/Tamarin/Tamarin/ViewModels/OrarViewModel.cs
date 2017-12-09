@@ -11,7 +11,7 @@ namespace Tamarin.ViewModels
     {
         public OrarViewModel(INavigationService navigationService):base(navigationService)
         {
-
+            Title = "Orar";
         }
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
