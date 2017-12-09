@@ -13,14 +13,15 @@ namespace Tamarin
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("NavigationPage/Login?title=Hello%20from%20Xamarin.Forms");
+            NavigationService.NavigateAsync("Navigation/Login");
         }
 
         protected override void RegisterTypes()
         {
-            Container.RegisterTypeForNavigation<NavigationPage>();
-            Container.RegisterTypeForNavigation<Login>();
-            Container.RegisterTypeForNavigation<Home>();
+            Container.RegisterTypeForNavigation<NavigationPage>("Navigation");
+            Container.RegisterTypeForNavigation<Login>( "Login" );
+            Container.RegisterTypeForNavigation<Home>( "Home" );
+            Container.RegisterTypeForNavigation<Dashboard>();
         }
     }
 }

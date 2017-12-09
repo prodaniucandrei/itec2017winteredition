@@ -10,43 +10,34 @@ using Xamarin.Forms;
 
 namespace Tamarin.ViewModels
 {
-    public class HomeViewModel : BindableBase, INavigationAware
+    public class HomeViewModel : BaseViewModel
     {
-        private string _item;
-        public string Item
+        //private string _item;
+        //public string Item
+        //{
+        //    get { return _item; }
+        //    set { SetProperty(ref _item, value); }
+        //}
+        //public ImageSource UserImage { get; set; }
+        //public ObservableCollection<HomePageMenuItem> MenuItems { get; set; }
+        public HomeViewModel(INavigationService navigationService): base(navigationService)
         {
-            get { return _item; }
-            set { SetProperty(ref _item, value); }
-        }
-        public ImageSource UserImage { get; set; }
-        public ObservableCollection<HomePageMenuItem> MenuItems { get; set; }
-        public HomeViewModel()
-        {
-            MenuItems = new ObservableCollection<HomePageMenuItem>(new[] 
-            {
-                new HomePageMenuItem { Id = 0, Title = "Categories", Icon = ImageSource.FromFile("categories.png") },
-                new HomePageMenuItem { Id = 1, Title = "Promotions", Icon = ImageSource.FromFile("promotions.png") },
-                new HomePageMenuItem { Id = 2, Title = "Cart", Icon = ImageSource.FromFile("cart.png") },
-                new HomePageMenuItem { Id = 3, Title = "Logout", Icon = ImageSource.FromFile("logout.png") },
-            });
-            UserImage = ImageSource.FromFile("user.png");
-        }
-
-        public void OnNavigatedFrom(NavigationParameters parameters)
-        {
+            //MenuItems = new ObservableCollection<HomePageMenuItem>(new[] 
+            //{
+            //    new HomePageMenuItem { Id = 0, Title = "Categories", Icon = ImageSource.FromFile("categories.png") },
+            //    new HomePageMenuItem { Id = 1, Title = "Promotions", Icon = ImageSource.FromFile("promotions.png") },
+            //    new HomePageMenuItem { Id = 2, Title = "Cart", Icon = ImageSource.FromFile("cart.png") },
+            //    new HomePageMenuItem { Id = 3, Title = "Logout", Icon = ImageSource.FromFile("logout.png") },
+            //});
+            //UserImage = ImageSource.FromFile("user.png");
+            NavigateCommand = new DelegateCommand<string>(OnNavigateCommandExecuted);
         }
 
-        public void OnNavigatedTo(NavigationParameters parameters)
+        public DelegateCommand<string> NavigateCommand { get; }
+
+        private async void OnNavigateCommandExecuted(string path)
         {
-        }
-
-        public void OnNavigatingTo(NavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("title"))
-                Item = (string)parameters["title"] + " and Prism";
-
-
-
+            await _navigationService.NavigateAsync(path);
         }
     }
 }
