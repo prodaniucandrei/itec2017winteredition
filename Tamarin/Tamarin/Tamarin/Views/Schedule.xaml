@@ -1,37 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-            prism:ViewModelLocator.AutowireViewModel="True"
-            x:Class="Tamarin.Views.Schedule"
-          
-            >
-    <TabbedPage.ToolbarItems>
-        <ToolbarItem Name="back" Priority="0" Order="Primary"  Text="back"> 
-        </ToolbarItem>
-    </TabbedPage.ToolbarItems>
-    
-    <TabbedPage.Children>
-        <ContentPage Title="tab1">
-            <ContentPage.Content>
-                <StackLayout>
-                    <Label Text="text1"></Label>
-                </StackLayout>
-            </ContentPage.Content>
-        </ContentPage>
-        <ContentPage Title="tab2">
-            <ContentPage.Content>
-                <StackLayout>
-                    <Label Text="text2"></Label>
-                </StackLayout>
-            </ContentPage.Content>
-        </ContentPage>
-        <ContentPage Title="tab3">
-            <ContentPage.Content>
-                <StackLayout>
-                    <Label Text="text3"></Label>
-                </StackLayout>
-            </ContentPage.Content>
-        </ContentPage>
-    </TabbedPage.Children>
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tamarin.Views.Schedule"
+            Title="{Binding Title}">
+  <!--Pages can be added as references or inline-->
+  <ContentPage Title="Tab 1" />
+  <ContentPage Title="Tab 2" />
+  <ContentPage Title="Tab 3" />
 </TabbedPage>

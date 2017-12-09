@@ -61,13 +61,13 @@
         <NavigationPage Title="Required Foo" Icon="hamburger.png">
             <x:Arguments>
                 <ContentPage NavigationPage.HasNavigationBar="False">
-                    <!--<StackLayout Padding="40">
+                    <StackLayout Padding="40">
                         <Label Text="{Binding UserName,StringFormat='Hello, {0}'}" />
-                        <Button Text="View A" Command="{Binding NavigateCommand}" CommandParameter="Navigation/ViewA?message=Did%20you%20see%20the%20secret%20sauce%3F" />
+                        <Button Text="View A" Command="{Binding NavigateCommand}" CommandParameter="Navigation/Schedule" />
                         <Button Text="View B" Command="{Binding NavigateCommand}" CommandParameter="Navigation/ViewB?message=Told%20you%20Prism%20Rocks%21%21%21" />
                         <Button Text="View C" Command="{Binding NavigateCommand}" CommandParameter="Navigation/ViewC?message=Does%20the%20hamburger%20make%20you%20hungry%3F%3F%3F" />
-                    </StackLayout>-->
-                    <StackLayout>
+                    </StackLayout>
+                    <!--<StackLayout>
                         <ListView SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
                             <ListView.Header>
                                 <Grid BackgroundColor="White" Padding="0,30,0,30">
@@ -100,7 +100,7 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                    </StackLayout>
+                    </StackLayout>-->
                 </ContentPage>
             </x:Arguments>
         </NavigationPage>
