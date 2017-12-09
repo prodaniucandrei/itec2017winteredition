@@ -1,17 +1,19 @@
-﻿using Prism.Commands;
+﻿using Newtonsoft.Json;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using Tamarin.Models;
+using Tamarin.Services;
 using Xamarin.Forms;
 
 namespace Tamarin.ViewModels
 {
-    public class LoginViewModel : BindableBase, INavigationAware
+    public class LoginViewModel : BaseViewModel
     {
-        private bool _isBusy;
         private double _elementsOpacity;
         private string _errorMessage;
         private string _username;
@@ -27,15 +29,6 @@ namespace Tamarin.ViewModels
         {
             get { return _password; }
             set { SetProperty(ref _password, value); }
-        }
-
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set
-            {
-                SetProperty(ref _isBusy, value);
-            }
         }
 
         public double ElementsOpacity
@@ -56,41 +49,48 @@ namespace Tamarin.ViewModels
             }
         }
 
-        public ICommand LoginCommand { get; set; }
-        public ICommand RegisterCommand { get; set; }
-        private INavigationService _navigationService;
+        public DelegateCommand LoginCommand { get; set; }
 
-
-        public LoginViewModel(INavigationService navigationService)
+        public LoginViewModel(INavigationService navigationService): base(navigationService)
         {
-            _navigationService = navigationService;
-            LoginCommand = new Command(LoginHandler);
-            RegisterCommand = new Command(RegisterHandler);
-        }
+            LoginCommand = LoginCommand = new DelegateCommand(OnLoginCommandExecuted);
 
-        public void LoginHandler()
-        {
-            _navigationService.NavigateAsync("/Home?title=hello");
-        }
-
-        public void RegisterHandler()
-        {
-
-        }
-
-        public void OnNavigatedFrom(NavigationParameters parameters)
-        {
-        }
-
-        public void OnNavigatedTo(NavigationParameters parameters)
-        {
-        }
-
-        public void OnNavigatingTo(NavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("title"))
-                Username = (string)parameters["title"] + " and Prism";
             ElementsOpacity = 1;
+        }
+
+        public async void OnLoginCommandExecuted()
+        {
+            IsBusy = true;
+            ElementsOpacity = .2;
+
+            var model = new LoginModel();
+            model.Username = Username;
+            model.Password = Password;
+
+            var response = await AuthService.Login(model);
+
+            if(response.IsSuccessStatusCode)
+            {
+                IsBusy = false;
+                ElementsOpacity = 1;
+
+                var content = await response.Content.ReadAsStringAsync();
+                var message = JsonConvert.DeserializeObject<Dictionary<string, object>>(content);
+                Application.Current.Properties["id"] = message["id"];
+                Application.Current.Properties["email"] = message["email"];
+                Application.Current.Properties["roles"] = message["roles"];
+                Application.Current.Properties["token"] = message["auth_token"];
+                Application.Current.Properties["isLoggedIn"] = "true";
+
+                await _navigationService.NavigateAsync("/Home/Navigation/Dashboard?message=Glad%20you%20read%20the%20code");
+            }
+            else
+            {
+                IsBusy = false;
+                ElementsOpacity = 1;
+
+                //await DisplayAlert("Error", "Username or password is not corect", "OK");
+            }
         }
     }
 }

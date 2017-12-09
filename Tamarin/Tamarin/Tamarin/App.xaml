@@ -4,14 +4,14 @@
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
                         x:Class="Tamarin.App">
 <Application.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Primary">#F44336</Color>
-            <Color x:Key="Accent">#FFFFFF</Color>
-            <Color x:Key="Dark">#212121</Color>
-            <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
-            <Color x:Key="DarkBackgroundColor">#F44336</Color>
-            <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
-            <Color x:Key="LightTextColor">#999999</Color>
-        </ResourceDictionary>
-    </Application.Resources>
+      <ResourceDictionary>
+          <Color x:Key="Primary">#F44336</Color>
+          <Color x:Key="Accent">#FFFFFF</Color>
+          <Color x:Key="Dark">#212121</Color>
+          <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
+          <Color x:Key="DarkBackgroundColor">#F44336</Color>
+          <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
+          <Color x:Key="LightTextColor">#999999</Color>
+      </ResourceDictionary>
+  </Application.Resources>
 </prism:PrismApplication>
