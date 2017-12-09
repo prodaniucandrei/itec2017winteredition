@@ -82,7 +82,7 @@ namespace Tamarin.ViewModels
                 Application.Current.Properties["token"] = message["auth_token"];
                 Application.Current.Properties["isLoggedIn"] = "true";
 
-                await _navigationService.NavigateAsync("/Home/Navigation/Dashboard?message=Glad%20you%20read%20the%20code");
+                await _navigationService.NavigateAsync("/Home/Navigation/Dashboard?message=Welcome");
             }
             else
             {
@@ -90,6 +90,19 @@ namespace Tamarin.ViewModels
                 ElementsOpacity = 1;
 
                 //await DisplayAlert("Error", "Username or password is not corect", "OK");
+            }
+        }
+
+        public override async void OnNavigatingTo(NavigationParameters parameters)
+        {
+            if (App.Current.Properties.ContainsKey("isLoggedIn"))
+            {
+                var isLoggedIn = App.Current.Properties["isLoggedIn"] as string;
+
+                if (isLoggedIn == "true")
+                {
+                    await _navigationService.NavigateAsync("/Home/Navigation/Dashboard?message=Glad%20you%20read%20the%20code");
+                }
             }
         }
     }
