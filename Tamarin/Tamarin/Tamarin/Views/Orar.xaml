@@ -4,7 +4,8 @@
              xmlns:tab="clr-namespace:Tamarin.Views"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="Tamarin.Views.Orar">
+             x:Class="Tamarin.Views.Orar"
+             Title="Orar">
     <tab:OrarConfirmate></tab:OrarConfirmate>
     <tab:OrarNeconfirmate></tab:OrarNeconfirmate>
 

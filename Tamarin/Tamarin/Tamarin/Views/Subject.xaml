@@ -5,7 +5,7 @@
             xmlns:tab="clr-namespace:Tamarin.Views"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="Tamarin.Views.Subject"
-            Title="Subject">
+            Title="Curs">
     <tab:SubjectDetalii></tab:SubjectDetalii>
     <tab:SubjectPrezenta></tab:SubjectPrezenta>
     <tab:SubjectNotice></tab:SubjectNotice>
