@@ -8,7 +8,7 @@
             <x:Arguments>
                 <ContentPage NavigationPage.HasNavigationBar="False">
                     <StackLayout>
-                        <ListView SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
+                        <!--<ListView SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
                             <ListView.Header>
                                 <Grid BackgroundColor="White" Padding="0,30,0,30">
                                     <Grid.RowDefinitions>
@@ -43,8 +43,64 @@
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-                        </ListView>
+                        </ListView>-->
+
                     </StackLayout>
+
+                    <!--<Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>-->
+                    <StackLayout Orientation="Vertical" Padding="0,40,0,0">
+                        <StackLayout Orientation="Vertical">
+                            <Image Grid.Row="0" Source="user.png" HeightRequest="64" WidthRequest="64"></Image>
+                            <Label Grid.Row="1" Text="{Binding Username}" TextColor="{StaticResource Dark}" FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"></Label>
+                            <Label Grid.Row="2" Text="VIEW DASHBOARD" TextColor="{StaticResource Dark}" HorizontalTextAlignment="Center"
+                                       FontSize="Micro">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="Dashboard"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        
+                        <StackLayout Orientation="Horizontal" Padding="10,20,0,0" HorizontalOptions="StartAndExpand">
+                            <Image Source="orar.png" HeightRequest="32" WidthRequest="32" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+                            <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="Orar" 
+                                               FontSize="Small">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="Orar"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Padding="10,20,0,0" HorizontalOptions="StartAndExpand">
+                            <Image Source="colegi.png" HeightRequest="32" WidthRequest="32" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+                            <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="Colegi" 
+                                               FontSize="Small">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="Colegi"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Padding="10,20,0,0" HorizontalOptions="StartAndExpand">
+                            <Image Source="logout.png" HeightRequest="32" WidthRequest="32" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+                            <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="Logout" 
+                                               FontSize="Small">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="Login"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <!--</Grid>-->
                 </ContentPage>
             </x:Arguments>
         </NavigationPage>

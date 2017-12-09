@@ -41,8 +41,14 @@
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\ConstantService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ColegiViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\OrarViewModel.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
+    <Compile Include="ViewModels\SubjectViewModel.cs" />
+    <Compile Include="Views\Colegi.xaml.cs">
+      <DependentUpon>Colegi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
@@ -51,8 +57,14 @@
     </Compile>
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Views\Orar.xaml.cs">
+      <DependentUpon>Orar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Schedule.xaml.cs">
       <DependentUpon>Schedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Subject.xaml.cs">
+      <DependentUpon>Subject.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +150,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Schedule.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Colegi.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Orar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Subject.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -40,7 +40,9 @@ namespace Tamarin.ViewModels
 
         private async void OnNavigateCommandExecuted(string path)
         {
-            await _navigationService.NavigateAsync(path);
+            if (path == "Login")
+                await _navigationService.NavigateAsync(path);
+            await _navigationService.NavigateAsync("/Home/Navigation/"+path);
         }
 
         public DelegateCommand<string> LogoutCommand { get; }

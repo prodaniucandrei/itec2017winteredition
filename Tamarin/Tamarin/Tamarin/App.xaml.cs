@@ -2,7 +2,7 @@
 using Tamarin.ViewModels;
 using Tamarin.Views;
 using Xamarin.Forms;
-
+using System.Linq;
 namespace Tamarin
 {
     public partial class App : PrismApplication
@@ -12,7 +12,7 @@ namespace Tamarin
         protected override void OnInitialized()
         {
             InitializeComponent();
-
+            Application.Current.MainPage = new Login();
             if (Application.Current.Properties.ContainsKey("isLoggedIn"))
             {
                 var isLoggedIn = App.Current.Properties["isLoggedIn"] as string;
@@ -23,10 +23,10 @@ namespace Tamarin
                 }
                 else
                 {
-                    NavigationService.NavigateAsync("Navigation/Login");
+                    NavigationService.NavigateAsync("Login");
                 }
             }
-            NavigationService.NavigateAsync("Navigation/Login");
+            NavigationService.NavigateAsync("Login");
         }
 
         protected override void RegisterTypes()
@@ -36,6 +36,9 @@ namespace Tamarin
             Container.RegisterTypeForNavigation<Home>( "Home" );
             Container.RegisterTypeForNavigation<Dashboard>();
             Container.RegisterTypeForNavigation<Schedule>();
+            Container.RegisterTypeForNavigation<Colegi>();
+            Container.RegisterTypeForNavigation<Orar>();
+            Container.RegisterTypeForNavigation<Subject>();
         }
     }
 }
