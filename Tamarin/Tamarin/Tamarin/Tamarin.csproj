@@ -47,8 +47,13 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ColegiViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\OrarConfirmateViewModel.cs" />
+    <Compile Include="ViewModels\OrarNeconfirmateViewModel.cs" />
     <Compile Include="ViewModels\OrarViewModel.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
+    <Compile Include="ViewModels\SubjectDetaliiViewModel.cs" />
+    <Compile Include="ViewModels\SubjectNoticeViewModel.cs" />
+    <Compile Include="ViewModels\SubjectPrezentaViewModel.cs" />
     <Compile Include="ViewModels\SubjectViewModel.cs" />
     <Compile Include="Views\Colegi.xaml.cs">
       <DependentUpon>Colegi.xaml</DependentUpon>
@@ -64,11 +69,26 @@
     <Compile Include="Views\Orar.xaml.cs">
       <DependentUpon>Orar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OrarConfirmate.xaml.cs">
+      <DependentUpon>OrarConfirmate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrarNeconfirmate.xaml.cs">
+      <DependentUpon>OrarNeconfirmate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Schedule.xaml.cs">
       <DependentUpon>Schedule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Subject.xaml.cs">
       <DependentUpon>Subject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubjectDetalii.xaml.cs">
+      <DependentUpon>SubjectDetalii.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubjectNotice.xaml.cs">
+      <DependentUpon>SubjectNotice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubjectPrezenta.xaml.cs">
+      <DependentUpon>SubjectPrezenta.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +192,36 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Subject.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SubjectNotice.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\OrarNeconfirmate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\OrarConfirmate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SubjectPrezenta.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SubjectDetalii.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

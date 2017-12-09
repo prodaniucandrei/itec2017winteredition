@@ -11,11 +11,19 @@ namespace Tamarin.ViewModels
     {
         public SubjectViewModel(INavigationService navigationService):base(navigationService)
         {
+            AddCommand = new DelegateCommand(OnItemAdded);
 
         }
 
+        public DelegateCommand AddCommand{ get; set; }
+
+        public async void OnItemAdded()
+        {
+            //add
+        }
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
+
         }
     }
 }

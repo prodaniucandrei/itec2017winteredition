@@ -4,6 +4,6 @@
              x:Class="Tamarin.Views.Dashboard"
              Title="{Binding Title}">
     <StackLayout>
-        <Button Text="Dashboard"></Button>
+        <Button Text="Curs" Command="{Binding NavigateCommand}"></Button>
     </StackLayout>
 </ContentPage>
