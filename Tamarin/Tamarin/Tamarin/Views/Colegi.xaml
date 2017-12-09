@@ -13,9 +13,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
-        <Label Text="colegi"></Label>
-    </StackLayout>
-    <StackLayout>
         <ListView ItemsSource="{Binding Colegi}" 
                   SelectedItem="{Binding Index}" 
                   HasUnevenRows="true"
@@ -31,8 +28,6 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Vertical">
-                            <!--<Label Text="{Binding Nume}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
-                            </Label>-->
                             <Frame Grid.Row="0" Margin="10, 5, 10, 5" Padding="10" HasShadow="True" OutlineColor="#bbb">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -55,16 +50,6 @@
                                     <Label Grid.Row="2" Grid.Column="1" Text="{Binding Subgrupa}"
                                            LineBreakMode="NoWrap"
                                            FontSize="Small"/>
-                                    <!--<Button 
-                                            Grid.Column="1" 
-                                            Grid.Row="0"
-                                            Grid.RowSpan="2"
-                                            Text="Delete" 
-                                            Command="{Binding Path=BindingContext.OnDeleteClicked, Source={x:Reference Name=ItemsListView}}"
-                                            CommandParameter="{Binding}"
-                                            TextColor = "White" 
-                                            BackgroundColor="Blue" 
-                                            />-->
                                 </Grid>
                             </Frame>
                         </StackLayout>
