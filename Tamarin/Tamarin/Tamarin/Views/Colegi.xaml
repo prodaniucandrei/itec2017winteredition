@@ -15,7 +15,13 @@
         <Label Text="colegi"></Label>
     </StackLayout>
     <StackLayout>
-        <ListView ItemsSource="{Binding Colegi}" SelectedItem="{Binding Index}" HasUnevenRows="True" >
+        <ListView ItemsSource="{Binding Colegi}" 
+                  SelectedItem="{Binding Index}" 
+                  HasUnevenRows="true"
+                  RefreshCommand="{Binding LoadItemsCommand}"
+                  IsPullToRefreshEnabled="true"
+                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                  CachingStrategy="RecycleElement">
             <ListView.Behaviors>
                 <localBeh:ListViewSelectedItemBehavior Command="{Binding ItemClickedCommand}"
                                                     Converter="{StaticResource SelectedItemConverter}" />
@@ -23,9 +29,43 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="15,1,0,0" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center"  HeightRequest="32">
-                            <Label Text="{Binding Nume}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
-                            </Label>
+                        <StackLayout Orientation="Vertical">
+                            <!--<Label Text="{Binding Nume}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
+                            </Label>-->
+                            <Frame Grid.Row="0" Margin="10, 5, 10, 5" Padding="10" HasShadow="True" OutlineColor="#bbb">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="user.png" HeightRequest="32" WidthRequest="32" Margin="16"></Image>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nume}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Default"
+                                           FontAttributes="Bold"/>
+                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Sectie}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding Subgrupa}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                    <!--<Button 
+                                            Grid.Column="1" 
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Text="Delete" 
+                                            Command="{Binding Path=BindingContext.OnDeleteClicked, Source={x:Reference Name=ItemsListView}}"
+                                            CommandParameter="{Binding}"
+                                            TextColor = "White" 
+                                            BackgroundColor="Blue" 
+                                            />-->
+                                </Grid>
+                            </Frame>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
