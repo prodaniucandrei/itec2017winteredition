@@ -26,6 +26,7 @@ namespace Tamarin
                     NavigationService.NavigateAsync("Navigation/Login");
                 }
             }
+            NavigationService.NavigateAsync("Navigation/Login");
         }
 
         protected override void RegisterTypes()
