@@ -13,7 +13,19 @@ namespace Tamarin
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("Navigation/Login");
+            if (Application.Current.Properties.ContainsKey("isLoggedIn"))
+            {
+                var isLoggedIn = App.Current.Properties["isLoggedIn"] as string;
+
+                if (isLoggedIn == "true")
+                {
+                    NavigationService.NavigateAsync("Home/Navigation/Dashboard?message=Glad%20you%20read%20the%20code");
+                }
+                else
+                {
+                    NavigationService.NavigateAsync("Navigation/Login");
+                }
+            }
         }
 
         protected override void RegisterTypes()
@@ -22,6 +34,7 @@ namespace Tamarin
             Container.RegisterTypeForNavigation<Login>( "Login" );
             Container.RegisterTypeForNavigation<Home>( "Home" );
             Container.RegisterTypeForNavigation<Dashboard>();
+            Container.RegisterTypeForNavigation<Schedule>();
         }
     }
 }
