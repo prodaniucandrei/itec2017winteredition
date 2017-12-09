@@ -25,21 +25,37 @@ namespace Tamarin.ViewModels
                 SetProperty(ref _index, value);
             }
         }
-        //public ImageSource UserImage { get; set; }
         public ObservableRangeCollection<StudentModel> Colegi { get; set; }
+        public ObservableRangeCollection<StudentModel> ColegiUnfiltered { get; set; }
         public Command<StudentModel> ItemClickedCommand { get; }
         public Command LoadItemsCommand { get; }
+        public Command SearchCommand { get; }
         public ColegiViewModel(INavigationService navigationService) : base(navigationService)
         {
             Title = "Colegi";
-            //UserImage = ImageSource.FromFile("user.png");
             ItemClickedCommand = new Command<StudentModel>(OnItemClicked);
+            SearchCommand = new Command((text) => Search(text));
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            Colegi = new ObservableRangeCollection<StudentModel>();
+            Colegi = ColegiUnfiltered = new ObservableRangeCollection<StudentModel>();
             if (Colegi.Count == 0)
             {
                 LoadItemsCommand.Execute(null);
+            }
+        }
+
+        private void Search(object text)
+        {
+            var t = text.ToString();
+            if(string.IsNullOrEmpty(t))
+            {
+                Colegi.Clear();
+                Colegi.ReplaceRange(ColegiUnfiltered);
+            }
+            else
+            {
+                var temp = ColegiUnfiltered.Where(a => a.Nume.ToLower().StartsWith(t.ToLower()));
+                Colegi.ReplaceRange(temp);
             }
         }
 
@@ -58,9 +74,11 @@ namespace Tamarin.ViewModels
             try
             {
                 Colegi.Clear();
+                ColegiUnfiltered.Clear();
                 var response = await StudentService.GetAll();
                 var content = await response.Content.ReadAsStringAsync();
                 var message = JsonConvert.DeserializeObject<List<StudentModel>>(content);
+                ColegiUnfiltered.ReplaceRange(message);
                 Colegi.ReplaceRange(message);
             }
             catch (Exception ex)
