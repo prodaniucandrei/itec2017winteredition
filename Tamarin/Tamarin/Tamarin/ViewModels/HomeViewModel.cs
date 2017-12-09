@@ -19,7 +19,7 @@ namespace Tamarin.ViewModels
         public string Username
         {
             get { return _username; }
-            set => SetProperty(ref _username, value);
+            set { SetProperty(ref _username, value); }
         }
 
         public HomeViewModel(INavigationService navigationService): base(navigationService)
