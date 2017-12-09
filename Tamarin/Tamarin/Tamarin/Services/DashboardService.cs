@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Tamarin.Services
 {
-    public class StudentService
+    class DashboardService
     {
         private static HttpClient client;
 
-        public static async Task<HttpResponseMessage> GetAll()
+        public static async Task<HttpResponseMessage> GetDashboard()
         {
             client = new HttpClient();
             client.BaseAddress = ConstantService.GetUrl();
@@ -19,7 +19,7 @@ namespace Tamarin.Services
 
             var studentId = App.Current.Properties["id"] as string;
 
-            var route = "student/getall" + "/" + studentId;
+            var route = "dashboard/getdashboard" + "/" + studentId;
 
             var token = App.Current.Properties["token"] as string;
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);

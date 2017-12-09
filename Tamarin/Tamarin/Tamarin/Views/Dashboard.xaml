@@ -2,8 +2,132 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tamarin.Views.Dashboard"
+             xmlns:local="clr-namespace:Tamarin.Helpers;"
              Title="{Binding Title}">
-    <StackLayout>
-        <Button Text="Curs" Command="{Binding NavigateCommand}"></Button>
-    </StackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="courseTemplate">
+                <ViewCell>
+                    <StackLayout Orientation="Vertical">
+                        <Frame Grid.Row="0" Margin="10, 5, 10, 5" Padding="10" HasShadow="True" OutlineColor="#bbb">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="materie.png" HeightRequest="32" WidthRequest="32" Margin="16"></Image>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nume}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Default"
+                                           FontAttributes="Bold"/>
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Locatie}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding StartTime}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="labTemplate">
+                <ViewCell>
+                    <StackLayout Orientation="Vertical">
+                        <Frame Grid.Row="0" Margin="10, 5, 10, 5" Padding="10" HasShadow="True" OutlineColor="#bbb">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="lab.png" HeightRequest="32" WidthRequest="32" Margin="16"></Image>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nume}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Default"
+                                           FontAttributes="Bold"/>
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Locatie}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding StartTime}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <local:SubjectDataTemplateSelector x:Key="subjectDataTemplateSelector"
+                CourseTemplate="{StaticResource courseTemplate}"
+                LabTemplate="{StaticResource labTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <!--<Button Text="Curs" Command="{Binding NavigateCommand}"></Button>-->
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height=".4*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" Grid.Row="0" Grid.RowSpan="8" IsVisible="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <Image Grid.Row="0" Source="user.png" HeightRequest="64" WidthRequest="64" Margin="16"></Image>
+            <Label Grid.Row="1" TextColor="{StaticResource Dark}" FontSize="Medium" FontAttributes="Bold" Text="{Binding DashboardModel.Student.Nume}" HorizontalTextAlignment="Center"></Label>
+            <Label Grid.Row="2" TextColor="{StaticResource Dark}" FontSize="Small" Text="{Binding DashboardModel.Student.Facultate}" HorizontalTextAlignment="Center"></Label>
+
+            <Label Grid.Row="4" Text="Orar" TextColor="{StaticResource Dark}" FontSize="Medium" FontAttributes="Bold"></Label>
+            <ListView  Grid.Row="5" ItemsSource="{Binding DashboardModel.Subjects}"  
+                  HasUnevenRows="true"
+                  CachingStrategy="RecycleElement"
+                  ItemTemplate="{StaticResource subjectDataTemplateSelector}">
+                <!--<ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Frame Grid.Row="0" Margin="10, 5, 10, 5" Padding="10" HasShadow="True" OutlineColor="#bbb">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="materie.png" HeightRequest="32" WidthRequest="32" Margin="16"></Image>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nume}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Default"
+                                           FontAttributes="Bold"/>
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Locatie}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding StartTime}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>-->
+            </ListView>
+        </Grid>
+    </ScrollView>
 </ContentPage>
