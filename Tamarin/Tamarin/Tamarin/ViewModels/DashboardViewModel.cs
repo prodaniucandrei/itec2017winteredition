@@ -14,6 +14,7 @@ namespace Tamarin.ViewModels
         {
             Title = "Dashboard";
             LogoutCommand = new DelegateCommand(OnLogoutCommandExecuted);
+            NavigateCommand = new DelegateCommand(OnNavigateExecuted);
         }
 
         private string _message;
@@ -24,7 +25,12 @@ namespace Tamarin.ViewModels
         }
 
         public DelegateCommand LogoutCommand { get; }
+        public DelegateCommand NavigateCommand { get; }
 
+        public async void OnNavigateExecuted()
+        {
+            await _navigationService.NavigateAsync("/Home/Navigation/Subject");
+        }
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             Message = parameters.GetValue<string>("message");

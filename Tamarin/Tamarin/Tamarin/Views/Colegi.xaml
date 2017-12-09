@@ -5,7 +5,8 @@
              xmlns:localBeh="clr-namespace:Tamarin.Behaviors"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="Tamarin.Views.Colegi">
+             x:Class="Tamarin.Views.Colegi"
+             Title="Colegi">
     <ContentPage.Resources>
         <ResourceDictionary>
             <localConv:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />

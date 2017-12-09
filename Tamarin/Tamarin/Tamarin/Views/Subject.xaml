@@ -2,10 +2,11 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+            xmlns:tab="clr-namespace:Tamarin.Views"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="Tamarin.Views.Subject"
-            Title="Subject">
-    <ContentPage Title="Detalii"></ContentPage>
-    <ContentPage Title="Prezenta"></ContentPage>
-    <ContentPage Title="Notite"></ContentPage>
+            Title="Curs">
+    <tab:SubjectDetalii></tab:SubjectDetalii>
+    <tab:SubjectPrezenta></tab:SubjectPrezenta>
+    <tab:SubjectNotice></tab:SubjectNotice>
 </TabbedPage>

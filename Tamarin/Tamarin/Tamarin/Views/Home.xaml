@@ -12,7 +12,7 @@
     </MasterDetailPage.Resources>
 
     <MasterDetailPage.Master>
-        <NavigationPage Title="Required Foo" Icon="hamburger.png">
+        <NavigationPage Title="Home" Icon="hamburger.png">
             <x:Arguments>
                 <ContentPage NavigationPage.HasNavigationBar="False">
                     <StackLayout>

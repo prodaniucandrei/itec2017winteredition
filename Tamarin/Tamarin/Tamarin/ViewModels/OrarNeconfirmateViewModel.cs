@@ -7,11 +7,10 @@ using System.Linq;
 
 namespace Tamarin.ViewModels
 {
-    public class OrarViewModel : BaseViewModel
+    public class OrarNeconfirmateViewModel : BaseViewModel
     {
-        public OrarViewModel(INavigationService navigationService):base(navigationService)
+        public OrarNeconfirmateViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "Orar";
             AddCommand = new DelegateCommand(OnItemAdded);
         }
 
@@ -20,10 +19,6 @@ namespace Tamarin.ViewModels
         public async void OnItemAdded()
         {
             //add
-        }
-        public override void OnNavigatedTo(NavigationParameters parameters)
-        {
-
         }
     }
 }

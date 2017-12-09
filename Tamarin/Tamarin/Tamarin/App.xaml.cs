@@ -39,6 +39,11 @@ namespace Tamarin
             Container.RegisterTypeForNavigation<Colegi>();
             Container.RegisterTypeForNavigation<Orar>();
             Container.RegisterTypeForNavigation<Subject>();
+            Container.RegisterTypeForNavigation<SubjectNotice>();
+            Container.RegisterTypeForNavigation<OrarNeconfirmate>();
+            Container.RegisterTypeForNavigation<OrarConfirmate>();
+            Container.RegisterTypeForNavigation<SubjectPrezenta>();
+            Container.RegisterTypeForNavigation<SubjectDetalii>();
         }
     }
 }
