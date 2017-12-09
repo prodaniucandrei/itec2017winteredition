@@ -25,6 +25,12 @@ namespace Tamarin.ViewModels
                 SetProperty(ref _index, value);
             }
         }
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set { SetProperty(ref _searchText, value); }
+        }
         public ObservableRangeCollection<StudentModel> Colegi { get; set; }
         public ObservableRangeCollection<StudentModel> ColegiUnfiltered { get; set; }
         public Command<StudentModel> ItemClickedCommand { get; }
@@ -34,22 +40,22 @@ namespace Tamarin.ViewModels
         {
             Title = "Colegi";
             ItemClickedCommand = new Command<StudentModel>(OnItemClicked);
-            SearchCommand = new Command((text) => Search(text));
+            SearchCommand = new Command((text) => Search());
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            Colegi = ColegiUnfiltered = new ObservableRangeCollection<StudentModel>();
+            Colegi = new ObservableRangeCollection<StudentModel>();
+            ColegiUnfiltered = new ObservableRangeCollection<StudentModel>();
             if (Colegi.Count == 0)
             {
                 LoadItemsCommand.Execute(null);
             }
         }
 
-        private void Search(object text)
+        private void Search()
         {
-            var t = text.ToString();
-            if(string.IsNullOrEmpty(t))
+            var t = SearchText.ToString();
+            if (string.IsNullOrEmpty(t))
             {
-                Colegi.Clear();
                 Colegi.ReplaceRange(ColegiUnfiltered);
             }
             else
