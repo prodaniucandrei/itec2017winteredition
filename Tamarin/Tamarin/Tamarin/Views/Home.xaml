@@ -60,12 +60,46 @@
         <!-- Hamburger Menu Secret Sauce... Add an Icon!!!! Make sure it's in your resources for your Platform Project -->
         <NavigationPage Title="Required Foo" Icon="hamburger.png">
             <x:Arguments>
-                <ContentPage Title="Menu">
-                    <StackLayout Padding="40">
+                <ContentPage NavigationPage.HasNavigationBar="False">
+                    <!--<StackLayout Padding="40">
                         <Label Text="{Binding UserName,StringFormat='Hello, {0}'}" />
                         <Button Text="View A" Command="{Binding NavigateCommand}" CommandParameter="Navigation/ViewA?message=Did%20you%20see%20the%20secret%20sauce%3F" />
                         <Button Text="View B" Command="{Binding NavigateCommand}" CommandParameter="Navigation/ViewB?message=Told%20you%20Prism%20Rocks%21%21%21" />
                         <Button Text="View C" Command="{Binding NavigateCommand}" CommandParameter="Navigation/ViewC?message=Does%20the%20hamburger%20make%20you%20hungry%3F%3F%3F" />
+                    </StackLayout>-->
+                    <StackLayout>
+                        <ListView SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
+                            <ListView.Header>
+                                <Grid BackgroundColor="White" Padding="0,30,0,30">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0" Source="{Binding UserImage}" HeightRequest="64" WidthRequest="64"></Image>
+                                    <Label Grid.Row="1" Text="{Binding Username}" TextColor="{StaticResource Dark}" FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"></Label>
+                                    <Label Grid.Row="2" Text="VIEW DASHBOARD" TextColor="{StaticResource Dark}" HorizontalTextAlignment="Center"
+                                       FontSize="Micro"></Label>
+                                </Grid>
+                            </ListView.Header>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Grid.Column="0" Source="{Binding Icon}" HeightRequest="32" WidthRequest="32" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+                                            <Label Grid.Column="1" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" 
+                                               FontSize="Small"/>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
                 </ContentPage>
             </x:Arguments>
