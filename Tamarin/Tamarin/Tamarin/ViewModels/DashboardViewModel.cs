@@ -24,6 +24,18 @@ namespace Tamarin.ViewModels
 
             GetDashboard();
         }
+        public string Zi
+        {
+            get
+            {
+                return GetDay((int)DateTime.Today.DayOfWeek);
+            }
+        }
+
+        private static string GetDay(int date)
+        {
+            return new System.Globalization.CultureInfo("ro-RO").DateTimeFormat.GetDayName((DayOfWeek)(date));
+        }
 
         private DashboardModel _dashboardModel;
         public DashboardModel DashboardModel
@@ -82,7 +94,8 @@ namespace Tamarin.ViewModels
             //Message = parameters.GetValue<string>("message");
         }
 
-        public void OnLogoutCommandExecuted() {
+        public void OnLogoutCommandExecuted()
+        {
             //_authenticationService.Logout();
         }
     }
