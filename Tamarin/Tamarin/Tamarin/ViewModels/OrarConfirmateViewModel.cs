@@ -15,14 +15,27 @@ namespace Tamarin.ViewModels
 {
     public class OrarConfirmateViewModel : BaseViewModel
     {
+        private bool _isBusyConfirmat;
+        public bool IsBusyConfirmat
+        {
+            get { return _isBusyConfirmat; }
+            set { SetProperty(ref _isBusyConfirmat, value); }
+        }
 
-        public ObservableRangeCollection<object> Materii { get; set; }
+        public ObservableRangeCollection<SubjectModel> Materii { get; set; }
         public Command LoadItemsCommand { get; }
         public Command<StudentModel> ItemClickedCommand { get; }
         public OrarConfirmateViewModel(INavigationService navigationService) : base(navigationService)
         {
+            Materii = new ObservableRangeCollection<SubjectModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemClickedCommand = new Command<StudentModel>(OnItemClicked);
+
+            if (Materii.Count == 0)
+            {
+                //LoadItemsCommand.Execute(null);
+                Task.Run(() => this.ExecuteLoadItemsCommand()).Wait();
+            }
         }
 
         private void OnItemClicked(object coleg)
@@ -31,17 +44,17 @@ namespace Tamarin.ViewModels
         }
         async Task ExecuteLoadItemsCommand()
         {
-            if (IsBusy)
+            if (IsBusyConfirmat)
                 return;
 
-            IsBusy = true;
+            IsBusyConfirmat = true;
 
             try
             {
                 Materii.Clear();
-                var response = await StudentService.GetAll();
+                var response = await SubjectService.GetAll(true);
                 var content = await response.Content.ReadAsStringAsync();
-                var message = JsonConvert.DeserializeObject<List<object>>(content);
+                var message = JsonConvert.DeserializeObject<List<SubjectModel>>(content);
                 Materii.ReplaceRange(message);
             }
             catch (Exception ex)
@@ -55,7 +68,7 @@ namespace Tamarin.ViewModels
             }
             finally
             {
-                IsBusy = false;
+                IsBusyConfirmat = false;
             }
         }
     }

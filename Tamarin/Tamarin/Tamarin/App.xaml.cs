@@ -44,6 +44,7 @@ namespace Tamarin
             Container.RegisterTypeForNavigation<OrarConfirmate>();
             Container.RegisterTypeForNavigation<SubjectPrezenta>();
             Container.RegisterTypeForNavigation<SubjectDetalii>();
+            Container.RegisterTypeForNavigation<AddNewSubject>();
         }
     }
 }

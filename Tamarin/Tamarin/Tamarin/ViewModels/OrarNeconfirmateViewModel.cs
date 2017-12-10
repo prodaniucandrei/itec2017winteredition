@@ -15,36 +15,55 @@ namespace Tamarin.ViewModels
 {
     public class OrarNeconfirmateViewModel : BaseViewModel
     {
+        private bool _isBusyNeconfirmat;
+        public bool IsBusyNeconfirmat
+        {
+            get { return _isBusyNeconfirmat; }
+            set { SetProperty(ref _isBusyNeconfirmat, value); }
+        }
 
-        public ObservableRangeCollection<object> Materii { get; set; }
+        public ObservableRangeCollection<SubjectModel> Materii { get; set; }
         public Command LoadItemsCommand { get; }
-        public Command<object> ItemClickedCommand { get; }
+        public Command<SubjectModel> ItemClickedCommand { get; }
         public DelegateCommand AddCommand { get; set; }
 
         public OrarNeconfirmateViewModel(INavigationService navigationService) : base(navigationService)
         {
+            Materii = new ObservableRangeCollection<SubjectModel>();
             AddCommand = new DelegateCommand(OnItemAdded);
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            ItemClickedCommand = new Command<object>(OnItemClicked);
+            ItemClickedCommand = new Command<SubjectModel>(OnItemClicked);
+
+            if (Materii.Count == 0)
+            {
+                //LoadItemsCommand.Execute(null);
+                Task.Run(() => this.ExecuteLoadItemsCommand()).Wait();
+            }
         }
 
-        private void OnItemClicked(object coleg)
+        private async void OnItemClicked(SubjectModel subject)
         {
             //Colegi.Add(new { Nume = "Ronaldo" });
+            var response = await SubjectService.ConfirmSubject(subject);
+            if (response.IsSuccessStatusCode)
+            {
+                Task.Run(() => this.ExecuteLoadItemsCommand()).Wait();
+            }
         }
+
         async Task ExecuteLoadItemsCommand()
         {
-            if (IsBusy)
+            if (IsBusyNeconfirmat)
                 return;
 
-            IsBusy = true;
+            IsBusyNeconfirmat = true;
 
             try
             {
                 Materii.Clear();
-                var response = await StudentService.GetAll();
+                var response = await SubjectService.GetAll(false);
                 var content = await response.Content.ReadAsStringAsync();
-                var message = JsonConvert.DeserializeObject<List<object>>(content);
+                var message = JsonConvert.DeserializeObject<List<SubjectModel>>(content);
                 Materii.ReplaceRange(message);
             }
             catch (Exception ex)
@@ -58,12 +77,12 @@ namespace Tamarin.ViewModels
             }
             finally
             {
-                IsBusy = false;
+                IsBusyNeconfirmat = false;
             }
         }
         public async void OnItemAdded()
         {
-            //add
+            await _navigationService.NavigateAsync("Navigation/AddNewSubject");
         }
     }
 }

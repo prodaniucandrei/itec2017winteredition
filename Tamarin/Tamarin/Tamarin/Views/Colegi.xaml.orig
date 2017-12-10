@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localConv="clr-namespace:Tamarin.Converters"
+             xmlns:localBeh="clr-namespace:Tamarin.Behaviors"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Tamarin.Views.Colegi"
+             Title="Colegi">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <localConv:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Label Text="colegi"></Label>
+    </StackLayout>
+    <StackLayout>
+<<<<<<< HEAD
+        <!--<SearchBar x:Name="search" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference search}}" Placeholder="Cauta colegi dupa nume"></SearchBar>-->
+=======
+        <SearchBar x:Name="search" Text="{Binding SearchText}" SearchCommand="{Binding SearchCommand}" Placeholder="Cauta colegi dupa nume"></SearchBar>
+>>>>>>> 413c390a98213d65b963e7d5cc779b69e0a7b6d3
+        <ListView ItemsSource="{Binding Colegi}" 
+                  SelectedItem="{Binding Index}" 
+                  HasUnevenRows="true"
+                  RefreshCommand="{Binding LoadItemsCommand}"
+                  IsPullToRefreshEnabled="true"
+                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                  CachingStrategy="RecycleElement">
+            <ListView.Behaviors>
+                <localBeh:ListViewSelectedItemBehavior Command="{Binding ItemClickedCommand}"
+                                                    Converter="{StaticResource SelectedItemConverter}" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Frame Grid.Row="0" Margin="10, 5, 10, 5" Padding="10" HasShadow="True" OutlineColor="#bbb">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="user.png" HeightRequest="32" WidthRequest="32" Margin="16"></Image>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nume}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Default"
+                                           FontAttributes="Bold"/>
+                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Sectie}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding Subgrupa}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+
+</ContentPage>

@@ -53,6 +53,8 @@
     <Compile Include="Services\ConstantService.cs" />
     <Compile Include="Services\DashboardService.cs" />
     <Compile Include="Services\StudentService.cs" />
+    <Compile Include="Services\SubjectService.cs" />
+    <Compile Include="ViewModels\AddNewSubjectViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ColegiViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
@@ -64,6 +66,9 @@
     <Compile Include="ViewModels\SubjectNoticeViewModel.cs" />
     <Compile Include="ViewModels\SubjectPrezentaViewModel.cs" />
     <Compile Include="ViewModels\SubjectViewModel.cs" />
+    <Compile Include="Views\AddNewSubject.xaml.cs">
+      <DependentUpon>AddNewSubject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Colegi.xaml.cs">
       <DependentUpon>Colegi.xaml</DependentUpon>
     </Compile>
@@ -231,6 +236,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SubjectDetalii.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AddNewSubject.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

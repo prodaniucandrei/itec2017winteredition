@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tamarin.Views.AddNewSubject"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}"></ToolbarItem>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Entry Grid.Row="0" Placeholder="Nume" Text="{Binding SubjectModel.Nume}" FontSize="Small"></Entry>
+                <Entry Grid.Row="1" Placeholder="Locatie" Text="{Binding SubjectModel.Nume}" FontSize="Small"></Entry>
+                <Entry Grid.Row="2" Placeholder="Ziua din saptamana" Text="{Binding SubjectModel.Date}" FontSize="Small"></Entry>
+                <Entry Grid.Row="3" Placeholder="Ora de inceput" Text="{Binding SubjectModel.StartTime}" FontSize="Small"></Entry>
+                <Entry Grid.Row="4" Placeholder="Tip" Text="{Binding SubjectModel.Tip}" FontSize="Small"></Entry>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

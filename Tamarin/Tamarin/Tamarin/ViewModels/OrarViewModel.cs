@@ -21,9 +21,5 @@ namespace Tamarin.ViewModels
         {
             //add
         }
-        public override void OnNavigatedTo(NavigationParameters parameters)
-        {
-
-        }
     }
 }
