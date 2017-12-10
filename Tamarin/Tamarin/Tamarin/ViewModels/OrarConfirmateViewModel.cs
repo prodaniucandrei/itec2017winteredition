@@ -4,6 +4,7 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Tamarin.Helpers;
@@ -22,20 +23,32 @@ namespace Tamarin.ViewModels
             set { SetProperty(ref _isBusyConfirmat, value); }
         }
 
-        public ObservableRangeCollection<SubjectModel> Materii { get; set; }
+        public ObservableCollection<Grouping<string, SubjectModel>> Materii { get; set; }
+        public ObservableRangeCollection<SubjectModel> Materiiv { get; set; }
         public Command LoadItemsCommand { get; }
         public Command<StudentModel> ItemClickedCommand { get; }
         public OrarConfirmateViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Materii = new ObservableRangeCollection<SubjectModel>();
+            Materiiv = new ObservableRangeCollection<SubjectModel>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemClickedCommand = new Command<StudentModel>(OnItemClicked);
 
-            if (Materii.Count == 0)
+            if (Materiiv.Count == 0)
             {
                 //LoadItemsCommand.Execute(null);
                 Task.Run(() => this.ExecuteLoadItemsCommand()).Wait();
             }
+        }
+
+        public void GroupItems()
+        {
+            var sorted = from monkey in Materiiv
+                         orderby monkey.Zi
+                         group monkey by monkey.Zi into monkeyGroup
+                         select new Grouping<string, SubjectModel>(monkeyGroup.Key, monkeyGroup);
+
+            //create a new collection of groups
+            Materii = new ObservableCollection<Grouping<string, SubjectModel>>(sorted);
         }
 
         private void OnItemClicked(object coleg)
@@ -51,11 +64,12 @@ namespace Tamarin.ViewModels
 
             try
             {
-                Materii.Clear();
+                Materiiv.Clear();
                 var response = await SubjectService.GetAll(true);
                 var content = await response.Content.ReadAsStringAsync();
                 var message = JsonConvert.DeserializeObject<List<SubjectModel>>(content);
-                Materii.ReplaceRange(message);
+                Materiiv.ReplaceRange(message);
+                GroupItems();
             }
             catch (Exception ex)
             {
