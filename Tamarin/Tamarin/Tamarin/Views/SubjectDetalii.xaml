@@ -5,5 +5,14 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Tamarin.Views.SubjectDetalii"
              Title="Detalii">
-  
+    <StackLayout>
+        <Label Text="{Binding Nume}"></Label>
+        <Label Text="{Binding Locatie}"></Label>
+        <Label Text="{Binding Confirmations}"></Label>
+        <Label Text="{Binding Facultate}"></Label>
+        <Label Text="{Binding Serie}"></Label>
+        <Label Text="{Binding Date}"></Label>
+        <Label Text="{Binding StartTime}"></Label>
+        <Label Text="{Binding Tip}"></Label>
+    </StackLayout>
 </ContentPage>

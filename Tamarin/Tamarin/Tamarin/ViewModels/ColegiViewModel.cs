@@ -35,7 +35,7 @@ namespace Tamarin.ViewModels
         public ObservableRangeCollection<StudentModel> ColegiUnfiltered { get; set; }
         public Command<StudentModel> ItemClickedCommand { get; }
         public Command LoadItemsCommand { get; }
-        //public Command SearchCommand { get; }
+        public Command SearchCommand { get; }
         public ColegiViewModel(INavigationService navigationService) : base(navigationService)
         {
             Title = "Colegi";

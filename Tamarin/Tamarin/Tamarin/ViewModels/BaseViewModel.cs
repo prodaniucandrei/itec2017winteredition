@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tamarin.Models;
 
 namespace Tamarin.ViewModels
 {
     public class BaseViewModel : BindableBase, INavigationAware
     {
+        protected static SubjectModel Subject;
         protected INavigationService _navigationService { get; }
 
         public BaseViewModel(INavigationService navigationService)

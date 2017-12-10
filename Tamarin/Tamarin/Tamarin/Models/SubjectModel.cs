@@ -9,6 +9,7 @@ namespace Tamarin.Models
 {
     public class SubjectModel
     {
+        public int Id { get; set; }
         public string Nume { get; set; }
         public string Locatie { get; set; }
         public int Confirmations { get; set; }

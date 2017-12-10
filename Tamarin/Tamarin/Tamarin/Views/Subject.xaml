@@ -1,12 +1,174 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:localConv="clr-namespace:Tamarin.Converters"
+             xmlns:localBeh="clr-namespace:Tamarin.Behaviors"
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
             xmlns:tab="clr-namespace:Tamarin.Views"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="Tamarin.Views.Subject"
             Title="Curs">
-    <tab:SubjectDetalii></tab:SubjectDetalii>
+    <!--Detalii-->
+    <ContentPage Title="Detalii">
+        <StackLayout >
+            <Grid Padding="10,10,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Nume"></Label>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nume}"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Text="Locatie"></Label>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Locatie}"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Text="Confirmations"></Label>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Confirmations}"></Label>
+                <Label Grid.Row="3" Grid.Column="0" Text="Facultate"></Label>
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding Facultate}"></Label>
+                <Label Grid.Row="4" Grid.Column="0" Text="Serie"></Label>
+                <Label Grid.Row="4" Grid.Column="1" Text="{Binding Serie}"></Label>
+                <Label Grid.Row="5" Grid.Column="0" Text="Zi"></Label>
+                <Label Grid.Row="5" Grid.Column="1" Text="{Binding Date}"></Label>
+                <Label Grid.Row="6" Grid.Column="0" Text="Ora inceput"></Label>
+                <Label Grid.Row="6" Grid.Column="1" Text="{Binding StartTime}"></Label>
+                <Label Grid.Row="7" Grid.Column="0" Text="Tip"></Label>
+                <Label Grid.Row="7" Grid.Column="1" Text="{Binding Tip}"></Label>
+            </Grid>
+        </StackLayout>
+    </ContentPage>
+
+    <!--Prezenta-->
+    <ContentPage Title="Prezenta">
+        <ContentPage.ToolbarItems>
+            <ToolbarItem Text="Prezent" Command="{Binding PrezentCommand}"></ToolbarItem>
+        </ContentPage.ToolbarItems>
+
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <localConv:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+            </ResourceDictionary>
+        </ContentPage.Resources>
+
+        <StackLayout>
+            <ListView ItemsSource="{Binding StudentiPrezenti}" 
+                  SelectedItem="{Binding Index}" 
+                  HasUnevenRows="true"
+                  RefreshCommand="{Binding LoadItemsCommand}"
+                  IsPullToRefreshEnabled="true"
+                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                  CachingStrategy="RecycleElement">
+                <ListView.Behaviors>
+                    <localBeh:ListViewSelectedItemBehavior Command="{Binding ItemClickedCommand}"
+                                                    Converter="{StaticResource SelectedItemConverter}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Frame Grid.Row="0" Margin="10, 5, 10, 5" Padding="10" HasShadow="True" OutlineColor="#bbb">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <!--<Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="user.png" HeightRequest="32" WidthRequest="32" Margin="16"></Image>-->
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Index}"></Label>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nume}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Default"
+                                           FontAttributes="Bold"/>
+                                        <!--<Label Grid.Row="1" Grid.Column="1" Text="{Binding Sectie}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Subgrupa}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>-->
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+    </ContentPage>
+
+    <!---Notite-->
+    <ContentPage Title="Notite">
+        <ContentPage.ToolbarItems>
+            <ToolbarItem Text="Add" Command="{Binding AddCommand}"></ToolbarItem>
+        </ContentPage.ToolbarItems>
+
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <localConv:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+            </ResourceDictionary>
+        </ContentPage.Resources>
+
+        <StackLayout>
+            <ListView ItemsSource="{Binding Notite}" 
+                  SelectedItem="{Binding Index}" 
+                  HasUnevenRows="true"
+                  RefreshCommand="{Binding LoadItemsCommand}"
+                  IsPullToRefreshEnabled="true"
+                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                  CachingStrategy="RecycleElement">
+                <ListView.Behaviors>
+                    <localBeh:ListViewSelectedItemBehavior Command="{Binding ItemClickedCommand}"
+                                                    Converter="{StaticResource SelectedItemConverter}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Frame Grid.Row="0" Margin="10, 5, 10, 5" Padding="10" HasShadow="True" OutlineColor="#bbb">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="user.png" HeightRequest="32" WidthRequest="32" Margin="16"></Image>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nume}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Default"
+                                           FontAttributes="Bold"/>
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Sectie}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Subgrupa}"
+                                           LineBreakMode="NoWrap"
+                                           FontSize="Small"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+
+
+    <!--<tab:SubjectDetalii></tab:SubjectDetalii>
     <tab:SubjectPrezenta></tab:SubjectPrezenta>
-    <tab:SubjectNotice></tab:SubjectNotice>
+    <tab:SubjectNotice></tab:SubjectNotice>-->
 </TabbedPage>

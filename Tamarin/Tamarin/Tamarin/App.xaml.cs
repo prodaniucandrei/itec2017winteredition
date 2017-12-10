@@ -3,10 +3,13 @@ using Tamarin.ViewModels;
 using Tamarin.Views;
 using Xamarin.Forms;
 using System.Linq;
+using Tamarin.Models;
+
 namespace Tamarin
 {
     public partial class App : PrismApplication
     {
+        public static SubjectModel subject = new SubjectModel();
         public App(IPlatformInitializer initializer = null) : base(initializer) { }
 
         protected override void OnInitialized()

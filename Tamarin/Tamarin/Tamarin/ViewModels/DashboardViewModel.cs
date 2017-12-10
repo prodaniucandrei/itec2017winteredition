@@ -20,6 +20,7 @@ namespace Tamarin.ViewModels
 
             LogoutCommand = new DelegateCommand(OnLogoutCommandExecuted);
             NavigateCommand = new DelegateCommand(OnNavigateExecuted);
+            ItemClickedCommand = new DelegateCommand<SubjectModel>(OnItemClickedCommand);
 
             GetDashboard();
         }
@@ -60,7 +61,9 @@ namespace Tamarin.ViewModels
             }
         }
 
+        public DelegateCommand<SubjectModel> ItemClickedCommand { get; }
         public DelegateCommand LogoutCommand { get; }
+
         public DelegateCommand NavigateCommand { get; }
 
         public async void OnNavigateExecuted()
@@ -69,6 +72,13 @@ namespace Tamarin.ViewModels
         }
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
+            //Message = parameters.GetValue<string>("message");
+        }
+        public async void OnItemClickedCommand(SubjectModel subject)
+        {
+            var parameters = new NavigationParameters();
+            parameters.Add("subject", subject);
+            await _navigationService.NavigateAsync("/Home/Navigation/Subject", parameters);
             //Message = parameters.GetValue<string>("message");
         }
 
