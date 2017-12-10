@@ -92,7 +92,10 @@
             <Label Grid.Row="1" TextColor="{StaticResource Dark}" FontSize="Medium" FontAttributes="Bold" Text="{Binding DashboardModel.Student.Nume}" HorizontalTextAlignment="Center"></Label>
             <Label Grid.Row="2" TextColor="{StaticResource Dark}" FontSize="Small" Text="{Binding DashboardModel.Student.Facultate}" HorizontalTextAlignment="Center"></Label>
 
-            <Label Grid.Row="4" Text="Orar" TextColor="{StaticResource Dark}" FontSize="Medium" FontAttributes="Bold"></Label>
+            <StackLayout Orientation="Horizontal" Grid.Row="4">
+                <Label  Text="Orar" TextColor="{StaticResource Dark}" FontSize="Medium" FontAttributes="Bold"></Label>
+                <Label  Text="{Binding Zi}" TextColor="{StaticResource Dark}" FontSize="Medium" FontAttributes="Bold"></Label>
+            </StackLayout>
             <ListView  Grid.Row="5" ItemsSource="{Binding DashboardModel.Subjects}"  
                   HasUnevenRows="true"
                   CachingStrategy="RecycleElement"

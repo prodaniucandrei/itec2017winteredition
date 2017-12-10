@@ -86,7 +86,10 @@
                   IsPullToRefreshEnabled="true"
                   IsRefreshing="{Binding IsBusyConfirmat, Mode=OneWay}"
                   ItemTemplate="{StaticResource subjectDataTemplateSelector}"
-                  CachingStrategy="RecycleElement">
+                  CachingStrategy="RecycleElement"
+                  IsGroupingEnabled="True"
+                  GroupDisplayBinding="{Binding Key}"
+                  >
             <ListView.Behaviors>
                 <localBeh:ListViewSelectedItemBehavior Command="{Binding ItemClickedCommand}"
                                                     Converter="{StaticResource SelectedItemConverter}" />

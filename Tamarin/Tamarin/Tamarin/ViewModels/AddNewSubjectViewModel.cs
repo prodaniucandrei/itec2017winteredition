@@ -20,7 +20,7 @@ namespace Tamarin.ViewModels
             Title = "New Subject";
             SubjectModel = new SubjectModel();
             AddCommand = new DelegateCommand(OnItemAdded);
-            CancelCommand = new DelegateCommand(OnItemAdded);
+            CancelCommand = new DelegateCommand(OnCancel);
         }
 
         private SubjectModel _subjectModel;
@@ -40,7 +40,7 @@ namespace Tamarin.ViewModels
 
         public async void OnCancel()
         {
-            //await _navigationService.NavigateAsync()
+            await _navigationService.GoBackAsync();
         }
     }
 }

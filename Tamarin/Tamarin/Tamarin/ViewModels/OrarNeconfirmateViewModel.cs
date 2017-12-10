@@ -4,6 +4,7 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Tamarin.Helpers;
@@ -22,19 +23,19 @@ namespace Tamarin.ViewModels
             set { SetProperty(ref _isBusyNeconfirmat, value); }
         }
 
-        public ObservableRangeCollection<SubjectModel> Materii { get; set; }
+        public ObservableRangeCollection<SubjectModel> Materiiv { get; set; }
         public Command LoadItemsCommand { get; }
         public Command<SubjectModel> ItemClickedCommand { get; }
         public DelegateCommand AddCommand { get; set; }
 
         public OrarNeconfirmateViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Materii = new ObservableRangeCollection<SubjectModel>();
+            Materiiv = new ObservableRangeCollection<SubjectModel>();
             AddCommand = new DelegateCommand(OnItemAdded);
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemClickedCommand = new Command<SubjectModel>(OnItemClicked);
 
-            if (Materii.Count == 0)
+            if (Materiiv.Count == 0)
             {
                 //LoadItemsCommand.Execute(null);
                 Task.Run(() => this.ExecuteLoadItemsCommand()).Wait();
@@ -50,6 +51,17 @@ namespace Tamarin.ViewModels
                 Task.Run(() => this.ExecuteLoadItemsCommand()).Wait();
             }
         }
+        public ObservableCollection<Grouping<string, SubjectModel>> Materii { get; set; }
+        public void GroupItems()
+        {
+            var sorted = from monkey in Materiiv
+                         orderby monkey.Zi
+                         group monkey by monkey.Zi into monkeyGroup
+                         select new Grouping<string, SubjectModel>(monkeyGroup.Key, monkeyGroup);
+
+            //create a new collection of groups
+            Materii= new ObservableCollection<Grouping<string, SubjectModel>>(sorted);
+        }
 
         async Task ExecuteLoadItemsCommand()
         {
@@ -60,11 +72,12 @@ namespace Tamarin.ViewModels
 
             try
             {
-                Materii.Clear();
+                Materiiv.Clear();
                 var response = await SubjectService.GetAll(false);
                 var content = await response.Content.ReadAsStringAsync();
                 var message = JsonConvert.DeserializeObject<List<SubjectModel>>(content);
-                Materii.ReplaceRange(message);
+                Materiiv.ReplaceRange(message);
+                GroupItems();
             }
             catch (Exception ex)
             {
@@ -82,7 +95,7 @@ namespace Tamarin.ViewModels
         }
         public async void OnItemAdded()
         {
-            await _navigationService.NavigateAsync("Navigation/AddNewSubject");
+            await _navigationService.NavigateAsync("/Home/Navigation/Orar/AddNewSubject");
         }
     }
 }

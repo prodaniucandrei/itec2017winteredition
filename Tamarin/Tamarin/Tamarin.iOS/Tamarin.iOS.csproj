@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\notite.png" />
+    <BundleResource Include="Resources\materie.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />

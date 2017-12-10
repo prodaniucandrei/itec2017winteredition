@@ -18,5 +18,10 @@ namespace Tamarin.Models
         public int Date { get; set; }
         public string StartTime { get; set; }
         public SubjectTypeEnum Tip { get; set; }
+        public string Zi =>GetDay(this.Date);
+        private static string GetDay(int date)
+        {
+            return new System.Globalization.CultureInfo("ro-RO").DateTimeFormat.GetDayName((DayOfWeek)(date - 1));
+        }
     }
 }

@@ -44,6 +44,7 @@
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\Enum\SubjectTypeEnum.cs" />
     <Compile Include="Models\ErrorMessageModel.cs" />
+    <Compile Include="Models\Group.cs" />
     <Compile Include="Models\HomePageMenuItem.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\NoteModel.cs" />
