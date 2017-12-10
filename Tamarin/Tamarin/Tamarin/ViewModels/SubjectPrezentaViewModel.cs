@@ -40,7 +40,7 @@ namespace Tamarin.ViewModels
             try
             {
                 Studenti.Clear();
-                var response = await StudentService.GetAll();
+                var response = await StudentService.GetAllBySubject(Subject.Id);
                 var content = await response.Content.ReadAsStringAsync();
                 var message = JsonConvert.DeserializeObject<List<StudentModel>>(content);
                 Studenti.ReplaceRange(message);

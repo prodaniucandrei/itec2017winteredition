@@ -47,5 +47,21 @@ namespace Tamarin.Services
             
             return response;
         }
+
+        public static async Task<HttpResponseMessage> GetAllBySubject(int id)
+        {
+            client = new HttpClient();
+            client.BaseAddress = ConstantService.GetUrl();
+            client.MaxResponseContentBufferSize = 256000;
+
+            var route = "student/getAllBySubject" + "/" + id;
+
+            var token = App.Current.Properties["token"] as string;
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.GetAsync(route);
+
+            return response;
+        }
     }
 }

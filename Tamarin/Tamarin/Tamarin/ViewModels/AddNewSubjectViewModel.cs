@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tamarin.Models;
+using Tamarin.Services;
 
 namespace Tamarin.ViewModels
 {
@@ -17,6 +18,7 @@ namespace Tamarin.ViewModels
         public AddNewSubjectViewModel(INavigationService navigationService): base(navigationService)
         {
             Title = "New Subject";
+            SubjectModel = new SubjectModel();
             AddCommand = new DelegateCommand(OnItemAdded);
             CancelCommand = new DelegateCommand(OnItemAdded);
         }
@@ -30,7 +32,10 @@ namespace Tamarin.ViewModels
 
         public async void OnItemAdded()
         {
-            //await _navigationService.NavigateAsync("Navigation/AddNewSubject");
+            var response = await SubjectService.Add(SubjectModel);
+            if (response.IsSuccessStatusCode)
+            {
+            }
         }
 
         public async void OnCancel()

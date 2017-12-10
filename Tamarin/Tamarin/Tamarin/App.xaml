@@ -5,8 +5,8 @@
                         x:Class="Tamarin.App">
 <Application.Resources>
       <ResourceDictionary>
-          <Color x:Key="Primary">#F44336</Color>
-          <Color x:Key="Accent">#FFFFFF</Color>
+          <Color x:Key="Primary">#2196F3</Color>
+          <Color x:Key="Accent">#FFC107</Color>
           <Color x:Key="Dark">#212121</Color>
           <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
           <Color x:Key="DarkBackgroundColor">#F44336</Color>

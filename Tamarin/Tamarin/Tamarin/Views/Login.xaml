@@ -8,7 +8,10 @@
     <ContentPage.Content>
         <Grid Padding="20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height=".2*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -18,12 +21,15 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" Grid.Row="0" Grid.RowSpan="8" IsVisible="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" Grid.Row="0" Grid.RowSpan="11" IsVisible="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-            <Label Grid.Row="1" Text="Login" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold" Opacity="{Binding ElementsOpacity}"></Label>
-            <Entry Grid.Row="3" Placeholder="Username" Text="{Binding Username}" FontSize="Small" Opacity="{Binding ElementsOpacity}"></Entry>
-            <Entry Grid.Row="4" Placeholder="Password" Text="{Binding Password}" IsPassword="True" FontSize="Small" Opacity="{Binding ElementsOpacity}"></Entry>
-            <Button Grid.Row="6" Text="LOGIN" BackgroundColor="{StaticResource Primary}" TextColor="White" HeightRequest="48" Command="{Binding LoginCommand}" Opacity="{Binding ElementsOpacity}"></Button>
+            <Image Grid.Row="1" Grid.Column="0" Source="logo.png" HeightRequest="128" WidthRequest="128" Opacity="{Binding ElementsOpacity}"></Image>
+            <Label Grid.Row="2" Text="UniversityApp" TextColor="{StaticResource Dark}" FontSize="Large" FontAttributes="Bold" Opacity="{Binding ElementsOpacity}" HorizontalTextAlignment="Center"></Label>
+            
+            <Label Grid.Row="4" Text="Login" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold" Opacity="{Binding ElementsOpacity}"></Label>
+            <Entry Grid.Row="6" Placeholder="Username" Text="{Binding Username}" FontSize="Small" Opacity="{Binding ElementsOpacity}"></Entry>
+            <Entry Grid.Row="7" Placeholder="Password" Text="{Binding Password}" IsPassword="True" FontSize="Small" Opacity="{Binding ElementsOpacity}"></Entry>
+            <Button Grid.Row="9" Text="LOGIN" BackgroundColor="{StaticResource Primary}" TextColor="White" HeightRequest="48" Command="{Binding LoginCommand}" Opacity="{Binding ElementsOpacity}"></Button>
         </Grid>
 
     </ContentPage.Content>

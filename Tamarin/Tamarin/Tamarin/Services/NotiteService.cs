@@ -13,16 +13,13 @@ namespace Tamarin.Services
     {
         private static HttpClient client;
 
-        public static async Task<HttpResponseMessage> GetNotite(string subjectId)
+        public static async Task<HttpResponseMessage> GetNotite(int subjectId)
         {
             client = new HttpClient();
             client.BaseAddress = ConstantService.GetUrl();
             client.MaxResponseContentBufferSize = 256000;
 
-            var studentId = App.Current.Properties["id"] as string;
-
-            var route = "note/getallbysubject" + "/" + studentId;
-
+            var route = "note/getallbysubject" + "/" + subjectId;
             var token = App.Current.Properties["token"] as string;
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 

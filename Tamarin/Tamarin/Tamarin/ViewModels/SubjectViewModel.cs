@@ -115,8 +115,6 @@ namespace Tamarin.ViewModels
             if (student != null && !StudentiPrezenti.Any(a => a.Nume == student.Nume))
                 StudentiPrezenti.Add(student);
 
-            
-
         }
 
         public async void GetNote()
@@ -127,11 +125,13 @@ namespace Tamarin.ViewModels
             IsBusy = true;
             try
             {
-                var notResponse = await NotiteService.GetNotite(Subject.Id.ToString());
+                var notResponse = await NotiteService.GetNotite(Subject.Id);
                 if (notResponse.IsSuccessStatusCode)
                 {
+                    Notite.Clear();
                     var content = await notResponse.Content.ReadAsStringAsync();
-                    Notite.ReplaceRange(JsonConvert.DeserializeObject<List<NoteModel>>(content));
+                    var message = JsonConvert.DeserializeObject<List<NoteModel>>(content);
+                    Notite.ReplaceRange(message);
                 }
             }
             catch (Exception ex)
@@ -167,7 +167,7 @@ namespace Tamarin.ViewModels
             try
             {
                 StudentiPrezenti.Clear();
-                var response = await StudentService.GetAll();
+                var response = await StudentService.GetAllBySubject(Subject.Id);
                 var content = await response.Content.ReadAsStringAsync();
                 var message = JsonConvert.DeserializeObject<List<StudentModel>>(content);
                 StudentiPrezenti.ReplaceRange(message);

@@ -54,6 +54,7 @@
     <Compile Include="Services\ConstantService.cs" />
     <Compile Include="Services\DashboardService.cs" />
     <Compile Include="Services\NotiteService.cs" />
+    <Compile Include="Services\PrezentaService.cs" />
     <Compile Include="Services\StudentService.cs" />
     <Compile Include="Services\SubjectService.cs" />
     <Compile Include="ViewModels\AddNewSubjectViewModel.cs" />

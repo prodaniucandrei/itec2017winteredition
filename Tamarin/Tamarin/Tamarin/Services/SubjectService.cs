@@ -53,5 +53,23 @@ namespace Tamarin.Services
 
             return response;
         }
+
+        public static async Task<HttpResponseMessage> Add(SubjectModel model)
+        {
+            client = new HttpClient();
+            client.BaseAddress = ConstantService.GetUrl();
+            client.MaxResponseContentBufferSize = 256000;
+
+            var route = "subject/add";
+            var json = JsonConvert.SerializeObject(model);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var token = App.Current.Properties["token"] as string;
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.PostAsync(route, content);
+
+            return response;
+        }
     }
 }

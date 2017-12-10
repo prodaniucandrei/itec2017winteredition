@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tamarin.Models
+namespace Tamarin.Services
 {
-    public class NoteModel
+    public class PrezentaService
     {
-        public string Titlu { get; set; }
-        public string Body { get; set; }
+        private static HttpClient client;
+
+
     }
 }

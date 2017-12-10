@@ -16,8 +16,8 @@ namespace Tamarin.ViewModels
     {
         private double _elementsOpacity;
         private string _errorMessage;
-        private string _username = "g@u.com";
-        private string _password ="ghita1234";
+        private string _username = "";
+        private string _password ="";
 
         public string Username
         {
