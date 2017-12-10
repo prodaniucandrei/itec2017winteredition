@@ -64,9 +64,19 @@ namespace Tamarin.ViewModels
         {
             //add
         }
+        public override void OnNavigatedFrom(NavigationParameters parameters)
+        {
+
+        }
+
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+
+        }
+
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+
         }
     }
 }

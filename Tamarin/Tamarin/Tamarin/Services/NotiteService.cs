@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -8,11 +9,11 @@ using Tamarin.Models;
 
 namespace Tamarin.Services
 {
-    public class StudentService
+    public class NotiteService
     {
         private static HttpClient client;
 
-        public static async Task<HttpResponseMessage> GetAll()
+        public static async Task<HttpResponseMessage> GetNotite(string subjectId)
         {
             client = new HttpClient();
             client.BaseAddress = ConstantService.GetUrl();
@@ -20,7 +21,7 @@ namespace Tamarin.Services
 
             var studentId = App.Current.Properties["id"] as string;
 
-            var route = "student/getall" + "/" + studentId;
+            var route = "note/getallbysubject" + "/" + studentId;
 
             var token = App.Current.Properties["token"] as string;
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
@@ -30,21 +31,14 @@ namespace Tamarin.Services
             return response;
         }
 
-        public static async Task<HttpResponseMessage> GetById()
+        public static async Task<HttpResponseMessage> PostNote(NoteModel note)
         {
-            client = new HttpClient();
-            client.BaseAddress = ConstantService.GetUrl();
-            client.MaxResponseContentBufferSize = 256000;
+            var route = "note/add";
+            var json = JsonConvert.SerializeObject(note);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var studentId = App.Current.Properties["id"] as string;
+            var response = await client.PostAsync(route, content);
 
-            var route = "student/getbyid" + "/" + studentId;
-
-            var token = App.Current.Properties["token"] as string;
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-            var response = await client.GetAsync(route);
-            
             return response;
         }
     }
