@@ -1,0 +1,13 @@
+﻿{
+  "ConnectionStrings": {
+    "UniversityContextConnection": "Server=DESKTOP-573QBP1;Database=UniversityApp;Trusted_Connection=true;MultipleActiveResultSets=true;"
+    //"Development": "server=localhost;port=3306;database=UniversityApp;uid=root;"
+  },
+  "JWTIssuerOptions": {
+    "Issuer": "UniversityApp",
+    "Audience": "http://localhost:51182/"
+  },
+  "Urls": {
+    "development": "http://0.0.0.0:51182"
+  }
+}

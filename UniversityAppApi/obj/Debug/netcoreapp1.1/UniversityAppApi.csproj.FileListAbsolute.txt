@@ -1,0 +1,10 @@
+c:\users\darlegheorghe\source\repos\UniversityAppApi\UniversityAppApi\bin\Debug\netcoreapp1.1\UniversityAppApi.deps.json
+c:\users\darlegheorghe\source\repos\UniversityAppApi\UniversityAppApi\bin\Debug\netcoreapp1.1\UniversityAppApi.runtimeconfig.json
+c:\users\darlegheorghe\source\repos\UniversityAppApi\UniversityAppApi\bin\Debug\netcoreapp1.1\UniversityAppApi.runtimeconfig.dev.json
+c:\users\darlegheorghe\source\repos\UniversityAppApi\UniversityAppApi\bin\Debug\netcoreapp1.1\UniversityAppApi.dll
+c:\users\darlegheorghe\source\repos\UniversityAppApi\UniversityAppApi\obj\Debug\netcoreapp1.1\UniversityAppApi.csprojResolveAssemblyReference.cache
+c:\users\darlegheorghe\source\repos\UniversityAppApi\UniversityAppApi\obj\Debug\netcoreapp1.1\UniversityAppApi.csproj.CoreCompileInputs.cache
+c:\users\darlegheorghe\source\repos\UniversityAppApi\UniversityAppApi\obj\Debug\netcoreapp1.1\UniversityAppApi.AssemblyInfo.cs
+c:\users\darlegheorghe\source\repos\UniversityAppApi\UniversityAppApi\bin\Debug\netcoreapp1.1\UniversityAppApi.pdb
+c:\users\darlegheorghe\source\repos\UniversityAppApi\UniversityAppApi\obj\Debug\netcoreapp1.1\UniversityAppApi.dll
+c:\users\darlegheorghe\source\repos\UniversityAppApi\UniversityAppApi\obj\Debug\netcoreapp1.1\UniversityAppApi.pdb
